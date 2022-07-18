@@ -10,8 +10,10 @@ router.get('/', (req, res) => {
   Product.findAll({
     include: [
       Category,
-      ProductTag,
-      Tag
+      {
+        model: Tag,
+        through: ProductTag
+      }
     ]
   })
   .then(dbUserData => res.json(dbUserData))
@@ -29,8 +31,10 @@ router.get('/:id', (req, res) => {
     },
     include: [
       Category,
-      ProductTag,
-      Tag
+      {
+        model: Tag,
+        through: ProductTag
+      }
     ]
   })
   .then(dbUserData => res.json(dbUserData))
